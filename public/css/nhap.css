@@ -1,0 +1,228 @@
+
+/* các selector như sau:
+.class{}
+#id{}
+h1,h2{}
+p{}
+*/
+/*site specific  */
+/*
+*{
+  margin:0;
+  padding:0;
+  } */
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  * {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    }
+  h1 {
+    font-family: sans-serif;
+    color:red;
+  } /*not work on google chrome (overwriten by google user urgent style, yet work on other browser*/
+
+  p {color:blue;
+  }
+
+  input[type="submit"] {color:red;} /*not work on google chrome (overwriten by google user urgent style, yet work on other browser*/
+
+/*.grid{
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap:3px;
+  grid-template-areas:
+    "t t"
+    "h h"
+    "s s"
+    "c c"
+    "f f";
+}*/
+/*phải có heigth:100% thì mới hiểu là các rows của nội dung grid này cộng lại là 100% màn hình, nếu không sẽ chạy không ra khi chia dòng*/
+/*có wrapper class để nội dung không lòi ra ngoài */
+.wrapper{
+  padding-left:auto;
+  padding-right:auto;
+  max-width:100%;
+  margin:0 auto;
+  box-shadow: 5px 5px 5px #2E0000;
+  }
+.title{
+  grid-area:t;
+  background-color: yellow;
+}
+.header{
+  grid-area:h;
+  background-color:green;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.position-ref {
+  position: relative;
+}
+
+.top-right {
+  position: absolute;
+  right: 10px;
+  top: 18px;
+}
+.links > a {   
+  color: black;
+  padding: 0 25px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.m-b-md {
+  margin-bottom: 30px;
+}
+
+.sidebar{
+  grid-area:s;
+  background-color: orange;
+}
+
+.content-wrapper{
+  grid-area:c;
+  display: grid;
+  margin:0;
+  padding: 10px;
+  max-width:75%;
+  background-color:pink;
+}
+/*.wrapper-content{
+	margin:0 auto;
+	width: 100%;
+	background-color: brown;
+}*/
+
+img{
+  grid-area:c;
+  border: 1px solid #dddd;
+  border-radius: 4px;
+  padding:5px;
+  width:800px;
+  height:auto;
+}
+.footer{
+  grid-area:f;
+  background-color:rgb(40%,30%,30%);
+}
+nav{
+  display:block;
+  background-color:white;
+   }
+nav p{
+  font-family: arial;
+  color:red;
+  font-size: 12px;
+  line-height:55px;  
+  padding:0px 20px;
+}
+/*nav ul {
+  width:12em;
+  float: left;}
+  muốn xài float: left hay right thì phải cho độ rộng width; trường hợp này là 12em */
+
+nav ul li {
+  
+  list-style: none;
+  position: relative;
+}
+nav ul li a {
+  
+  display: block;
+  color: purple;
+  font-size: 20px;
+  padding: 22px 14px;
+  text-decoration: none;
+}
+nav ul li ul {
+  
+  
+  display: none; /*để giấu sub-list vào trong menu product*/
+  position: absolute;
+  background-color:grey;
+  padding: 5px;
+  border-radius: 0px 0px 4px 4px;
+}
+nav ul li:hover ul {/* cái hover này để khi đưa chuột tới mục product thì sub-list mới hiện ra*/
+  display: block;
+  
+  
+}
+nav ul li ul li a {/* chữ a ở đây là chỉ anchor text*/
+  padding: 8px 14px;
+  
+  }
+nav ul li ul li a:hover { /*lưu ý hover phải sát dấu hai chấm, nếu không nó không chạy*/
+ background-color: green;
+ 
+
+}
+
+@media screen and (min-width: 736px)
+{
+.grid{
+  height: 100%;
+  display:grid;
+  grid-template-columns: repeat(12,1fr);
+  grid-gap:3px;
+  grid-template-areas:
+    ".t t t t t t t t t t."
+    ".h h h h h h h h h h."
+    ".s s s s s s s s s s."
+    ".c c c c c c c c c c."
+    ".f f f f f f f f f f.";
+	}
+}
+
+/*three of the popular mobile-first responsive grids
+1. Fluidable (http://fluidable.com/)
+2. CSS Smart Grid (http://dryan.github.io/css-smart-grid/)
+3. csswizardry-grids (http://csswizardry.com/csswizardry-grids/)
+
+=>1.Fluidable (http://fluidable.com/)
+1. .col-mb-x Defines how many columns it should span on mobile
+2. .col-x Defines how many columns it should span on a tablet
+3. .col-dt-x Defines how many columns it should span on a desktop
+only complaint with their implementation of this is the naming convention for the column class names is
+not consistent, with col-x being used for tablet, which isn’t immediately clear.
+Fluidable is configurable using five variables—@columns, @maxWidth,
+@gutterWidth, @screenTablet, and @screenDesktop—which allow it to be more flexible.
+
+=>2. CSS Smart Grid (http://dryan.github.io/css-smart-grid/)
+The columns in CSS Smart Grid are defined by adding the class “columns” with an additional class to specify the
+number of columns it should span (e.g., one, two, three). This is supported right up to 12 columns. Alternatively,
+you can also use keywords to specify how wide an element should be, these are:
+1. one-fourth: equal to 25 percent or three columns’ width
+2. one-half: equal to 50 percent or six columns’ width
+3. one-third: equal to 33.33 percent or four columns’ width
+4. two-thirds: equal to 66.66 percent or eight columns’ width
+An example of using the grid in practice is shown below. As you will see, a row is defined, along with two
+columns, each with a width defined using the keywords discussed above:
+<div class="row">
+<div class="columns two-thirds">
+<p>Lorem ipsum</p>
+</div>
+<div class="columns one-third">
+<p>Lorem ipsum</p>
+</div>
+</div>
+
+=>
+*/

@@ -1,0 +1,154 @@
+
+/* các selector như sau:
+.class{}
+#id{}
+h1,h2{}
+p{}
+*/
+/*site specific  */
+/* chung chung*/
+*{ /*dấu sao (*) ở đây để chỉ rule này applied cho tất cả*/
+  margin:0;
+  padding:0;
+  } 
+*{
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
+    }
+
+/*@media để set thuộc loại mobile-first hay desktop-first */
+    @media screen and (min-width: 736px)
+{  
+      /* grid phải có heigth:100% thì mới hiểu là các rows của nội dung grid này cộng lại là 100% màn hình,
+   nếu không sẽ chạy không ra khi chia dòng*/
+        .grid{
+            height: 100%;
+            display:grid;
+            grid-template-columns: repeat(12,1fr);
+            grid-gap:3px;
+            grid-template-areas:
+              ".t t t t t t t t t t."
+              ".h h h h h h h h h h."
+              ".s s s s s s s s s s."
+              ".c c c c c c c c c c."
+              ".f f f f f f f f f f.";
+	}
+}
+/*có wrapper/container class để nội dung không tràn ra ngoài */
+
+.wrapper{
+    padding-left:auto;
+    padding-right:auto;
+    max-width:80%;
+    margin:0 auto;
+    box-shadow: 5px 5px 5px #2E0000;
+  }
+/* từng phần*/
+/*Phần đầu*/
+h1{
+    font-family: sans-serif;
+    color:red;
+}
+.title{
+    grid-area:t;
+    background-color: yellow;
+}
+.header{
+    grid-area:h;
+    background-color:green;
+}
+    /*top-right:class của chữ login & register*/
+.top-right{
+    position:relative;
+    float:right; 
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  /*để hiển thị chữ style LOGIN & REGISTER*/
+.links > a {   
+    color: black;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  
+  .sidebar-wrapper{
+      color: greenyellow;
+      background-color:red;
+    }
+    
+  /*phần menu */
+  /* sticky top navigation bar (menu) */
+  .navbar {
+        grid-area:s;
+        background-color: orange;
+        /*to be sticky*/
+        position: fixed;
+        /*for the items to be in center*/ 
+        display:flex; 
+        justify-content: center;
+        align-items: center; 
+        flex-direction: row;
+        flex-wrap: wrap;
+        /*equal to the class wrapper width*/
+        width:80%; 
+        height: 70px;
+        z-index:1;
+      }
+       /* để các items trong menu nằm thành hàng ngang (còn đùn lại sát nhau chưa đẹp) 
+       position: relative
+       float: left
+       hoặc dùng table để wrap nó*/
+      
+nav ul li{ 
+    background-color:greenyellow;
+    padding:0;
+    margin:0;
+    border-radius:2rem;
+    position:relative;
+    float:left;
+    list-style: none;    
+        }
+        
+        /*để các items trong menu có khoảng cách và cở chữ đẹp*/
+        nav ul li a {
+          display: block;
+          color: purple;
+          font-size: 20px;
+          padding:0;
+          text-decoration: none;
+        }
+        nav ul li ul{  
+    display: none; /*để giấu sub-list vào trong menu product*/
+    position: relative;
+    background-color:grey;
+    padding:0;
+    border-radius: 0px 0px 0px 0px;
+        }
+nav ul li:hover ul {/* cái hover này để khi đưa chuột tới mục product thì sub-list mới hiện ra*/
+    display: block;
+        }    
+
+/*phần giữa */
+.content-wrapper{
+    grid-area:c;
+    display: grid;
+    margin:0;
+    padding: 10px;
+    max-width:75%;
+    background-color:pink;
+}
+p {
+  color:blue;
+}
+/*phần cuối*/
+.footer{
+    grid-area:f;
+    background-color: yellowgreen;
+}
+
+
